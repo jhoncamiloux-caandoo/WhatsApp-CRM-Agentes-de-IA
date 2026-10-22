@@ -1,0 +1,386 @@
+{
+  "automation": {
+    "name": "Follow-up for unresponsive leads",
+    "initialStatus": "Draft",
+    "publishedStatus": "Active"
+  },
+  "steps": [
+    {
+      "id": "pedido",
+      "title": "You describe what you need",
+      "subtitle": "A plain-language request, no setup required",
+      "userMessage": "When a lead enters Qualification, I want the AI to answer on WhatsApp. If they go quiet, follow up. If they reply, move them to negotiation.",
+      "aiMessage": "Got it! I'll build a follow-up automation for leads in Qualification: AI-led conversation, a reminder if there's no reply, and pipeline progress when the lead engages.",
+      "resultCard": null,
+      "canvasOps": [],
+      "activeTab": "editor",
+      "durationMs": 7000
+    },
+    {
+      "id": "gatilho",
+      "title": "Setting the trigger",
+      "subtitle": "The automation starts when the deal changes stage",
+      "aiMessage": "First, the trigger: the automation starts whenever a deal enters the Qualification stage of the Sales pipeline.",
+      "resultCard": {
+        "nodeType": "trigger",
+        "title": "Start when…",
+        "detail": "Deal entered the Qualification stage"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n1",
+          "type": "trigger",
+          "position": {
+            "x": 0,
+            "y": 140
+          },
+          "data": {
+            "title": "Start when…",
+            "label": "Deal entered stage",
+            "value": "Qualification",
+            "meta": "Sales pipeline"
+          }
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6000
+    },
+    {
+      "id": "agente",
+      "title": "Putting the AI to work",
+      "subtitle": "The agent replies on WhatsApp with the deal's context",
+      "aiMessage": "Now I'm connecting an AI agent to Official WhatsApp. It greets the lead, understands what they need and logs everything in the CRM.",
+      "resultCard": {
+        "nodeType": "agent",
+        "title": "Start conversation",
+        "detail": "Qualifier agent · Official WhatsApp"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n2",
+          "type": "agent",
+          "position": {
+            "x": 420,
+            "y": 100
+          },
+          "data": {
+            "title": "Start conversation",
+            "device": "Official WhatsApp · Sales",
+            "agent": "Qualifier",
+            "prompt": "You are the sales assistant. Understand the lead's needs and log them in the CRM."
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e1",
+          "source": "n1",
+          "target": "n2"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6500
+    },
+    {
+      "id": "condicao",
+      "title": "Checking whether the lead replied",
+      "subtitle": "A branch separates engaged leads from silent ones",
+      "aiMessage": "I added a condition: if the lead replies within 1 hour, they move to negotiation. If not, they enter the follow-up flow.",
+      "resultCard": {
+        "nodeType": "condition",
+        "title": "Conversation interaction",
+        "detail": "Replied · No reply in 1h"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n3",
+          "type": "condition",
+          "position": {
+            "x": 840,
+            "y": 100
+          },
+          "data": {
+            "title": "Conversation interaction",
+            "branches": [
+              {
+                "id": "yes",
+                "label": "If the lead replies"
+              },
+              {
+                "id": "no",
+                "label": "If no reply within 1 hour",
+                "tone": "danger"
+              }
+            ]
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e2",
+          "source": "n2",
+          "target": "n3"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6500
+    },
+    {
+      "id": "followup",
+      "title": "Creating the follow-up",
+      "subtitle": "Waits a day and sends a Meta-approved message",
+      "aiMessage": "For leads who didn't reply: I wait 1 day and send a message template through Official WhatsApp, picking up where the conversation left off.",
+      "resultCard": {
+        "nodeType": "whatsapp",
+        "title": "Wait 1 day + WhatsApp",
+        "detail": "Template “resume_conversation” · Official"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n4",
+          "type": "wait",
+          "position": {
+            "x": 1260,
+            "y": 360
+          },
+          "data": {
+            "title": "Wait",
+            "value": "1 day",
+            "meta": "Business hours only"
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e3",
+          "source": "n3",
+          "sourceHandle": "no",
+          "target": "n4",
+          "tone": "danger"
+        },
+        {
+          "op": "addNode",
+          "id": "n5",
+          "type": "whatsapp",
+          "position": {
+            "x": 1680,
+            "y": 320
+          },
+          "data": {
+            "title": "Send message",
+            "channel": "Official WhatsApp",
+            "sender": "Clint · Sales",
+            "preview": "Hi, {{name}}! Looks like you had a question about the quote. Can I help you move forward? 😊"
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e4",
+          "source": "n4",
+          "target": "n5"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 7000
+    },
+    {
+      "id": "ultima-chance",
+      "title": "One last try on another channel",
+      "subtitle": "If they stay quiet, Aura tries email",
+      "aiMessage": "If there's still no reply within 24 hours, I send an email with a summary of the conversation. No lead gets forgotten.",
+      "resultCard": {
+        "nodeType": "email",
+        "title": "Send email",
+        "detail": "After 24h with no reply"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n6",
+          "type": "condition",
+          "position": {
+            "x": 2100,
+            "y": 320
+          },
+          "data": {
+            "title": "Conversation interaction",
+            "branches": [
+              {
+                "id": "yes",
+                "label": "If the lead replies"
+              },
+              {
+                "id": "no",
+                "label": "If no reply within 24 hours",
+                "tone": "danger"
+              }
+            ]
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e5",
+          "source": "n5",
+          "target": "n6"
+        },
+        {
+          "op": "addNode",
+          "id": "n7",
+          "type": "email",
+          "position": {
+            "x": 2520,
+            "y": 480
+          },
+          "data": {
+            "title": "Send email",
+            "subject": "Any questions, {{name}}?",
+            "meta": "Conversation summary attached"
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e6",
+          "source": "n6",
+          "sourceHandle": "no",
+          "target": "n7",
+          "tone": "danger"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6500
+    },
+    {
+      "id": "negociacao",
+      "title": "Moving to negotiation",
+      "subtitle": "Leads who reply move forward on their own",
+      "aiMessage": "When the lead replies, I move the deal to Negotiating and notify the assigned rep. The automation's goal is closing the sale.",
+      "resultCard": {
+        "nodeType": "action",
+        "title": "Move to stage",
+        "detail": "Negotiating · Goal: Sale closed"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n8",
+          "type": "action",
+          "position": {
+            "x": 2520,
+            "y": -160
+          },
+          "data": {
+            "title": "Actions",
+            "items": [
+              {
+                "label": "Move to stage",
+                "value": "Negotiating"
+              },
+              {
+                "label": "Notify owner",
+                "value": "Deal's sales rep"
+              }
+            ]
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e7",
+          "source": "n3",
+          "sourceHandle": "yes",
+          "target": "n8"
+        },
+        {
+          "op": "addEdge",
+          "id": "e8",
+          "source": "n6",
+          "sourceHandle": "yes",
+          "target": "n8"
+        },
+        {
+          "op": "addNode",
+          "id": "n9",
+          "type": "goal",
+          "position": {
+            "x": 2940,
+            "y": -130
+          },
+          "data": {
+            "title": "Goal",
+            "value": "Sale closed",
+            "meta": "Ends the automation when reached"
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e9",
+          "source": "n8",
+          "target": "n9"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 7000
+    },
+    {
+      "id": "publicar",
+      "title": "Reviewing and publishing",
+      "subtitle": "Aura checks every block before going live",
+      "aiMessage": "I reviewed all 9 blocks: channels connected, template approved and no dead ends. I published the automation — it's live now.",
+      "resultCard": {
+        "nodeType": "goal",
+        "title": "Automation published",
+        "detail": "9 blocks · status Active"
+      },
+      "canvasOps": [
+        {
+          "op": "highlight",
+          "ids": [
+            "n1",
+            "n2",
+            "n3",
+            "n4",
+            "n5",
+            "n6",
+            "n7",
+            "n8",
+            "n9"
+          ]
+        },
+        {
+          "op": "setStatus",
+          "status": "Active"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6500
+    },
+    {
+      "id": "insights",
+      "title": "Tracking results",
+      "subtitle": "Each block shows how many leads went through it",
+      "aiMessage": "Done. In Insights you see how many leads went through each block: how many replied to the follow-up, moved to negotiation and closed.",
+      "resultCard": {
+        "nodeType": "insights",
+        "title": "Automation insights",
+        "detail": "Sample data"
+      },
+      "canvasOps": [],
+      "activeTab": "insights",
+      "durationMs": 8000
+    },
+    {
+      "id": "conversas",
+      "title": "Conversations with context",
+      "subtitle": "Each conversation shows what the automation did with the lead",
+      "aiMessage": "And in Conversations your team sees every chat: what the AI said, when the follow-up went out and who's already negotiating. All in the deal's history.",
+      "resultCard": {
+        "nodeType": "whatsapp",
+        "title": "Automation conversations",
+        "detail": "5 sample conversations"
+      },
+      "canvasOps": [],
+      "activeTab": "conversas",
+      "durationMs": 8000
+    }
+  ]
+}

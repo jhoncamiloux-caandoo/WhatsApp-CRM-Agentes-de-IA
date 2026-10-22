@@ -1,0 +1,303 @@
+{
+  "INSIGHTS_SUMMARY": {
+    "trigger": "Deal changed stage",
+    "period": "Last 30 days",
+    "general": [
+      {
+        "label": "Runs",
+        "value": "1,248",
+        "icon": "play"
+      },
+      {
+        "label": "Completed",
+        "value": "214",
+        "icon": "target"
+      },
+      {
+        "label": "In progress",
+        "value": "391",
+        "icon": "clock"
+      },
+      {
+        "label": "Left the flow",
+        "value": "643",
+        "icon": "prev"
+      }
+    ],
+    "highlight": {
+      "label": "Replied to follow-up",
+      "value": "38%",
+      "detail": "+21 pts vs. no automation"
+    }
+  },
+  "NODE_STATS": {
+    "n1": {
+      "total": 1248
+    },
+    "n2": {
+      "total": 1190
+    },
+    "n3": {
+      "total": 1190,
+      "branches": {
+        "yes": 488,
+        "no": 702
+      }
+    },
+    "n4": {
+      "total": 702,
+      "waiting": 63
+    },
+    "n5": {
+      "total": 639
+    },
+    "n6": {
+      "total": 639,
+      "branches": {
+        "yes": 186,
+        "no": 453
+      }
+    },
+    "n7": {
+      "total": 453
+    },
+    "n8": {
+      "total": 674
+    },
+    "n9": {
+      "total": 214
+    }
+  },
+  "CONVERSATIONS": [
+    {
+      "id": "c1",
+      "name": "Marina Albuquerque",
+      "initials": "MA",
+      "color": "#7566ff",
+      "time": "14:32",
+      "preview": "Perfect, can you send me the quote?",
+      "unread": 2,
+      "tag": {
+        "label": "Negotiating",
+        "tone": "success"
+      },
+      "deal": {
+        "stage": "Negotiating",
+        "value": "R$ 4,800",
+        "owner": "Lucas"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Deal entered Qualification"
+        },
+        {
+          "from": "agent",
+          "time": "09:02",
+          "text": "Hi, Marina! This is Clint's assistant 😊 I saw you asked about the plan for your team. How many people handle WhatsApp today?"
+        },
+        {
+          "from": "event",
+          "text": "No reply in 1 hour · waiting 1 day"
+        },
+        {
+          "from": "template",
+          "time": "09:00",
+          "day": "Yesterday",
+          "text": "Hi, Marina! Looks like you had a question about the quote. Can I help you move forward? 😊"
+        },
+        {
+          "from": "lead",
+          "time": "14:30",
+          "text": "Hi! Sorry for the delay, busy week. We're 6 reps."
+        },
+        {
+          "from": "lead",
+          "time": "14:32",
+          "text": "Perfect, can you send me the quote?"
+        },
+        {
+          "from": "event",
+          "text": "Deal moved to Negotiating · Lucas notified"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "name": "Rafael Quintana",
+      "initials": "RQ",
+      "color": "#3dd68c",
+      "time": "13:10",
+      "preview": "Do you integrate with my website?",
+      "unread": 0,
+      "tag": {
+        "label": "Handled by AI",
+        "tone": "primary"
+      },
+      "deal": {
+        "stage": "Qualification",
+        "value": "R$ 2,400",
+        "owner": "Aura"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Deal entered Qualification"
+        },
+        {
+          "from": "agent",
+          "time": "13:05",
+          "text": "Hi, Rafael! How are you? I'm Clint's assistant. Tell me: what's your sales team's biggest challenge today?"
+        },
+        {
+          "from": "lead",
+          "time": "13:09",
+          "text": "We lose a lot of leads that come through the website."
+        },
+        {
+          "from": "lead",
+          "time": "13:10",
+          "text": "Do you integrate with my website?"
+        },
+        {
+          "from": "agent",
+          "time": "13:10",
+          "text": "Yes, we do! Website leads go straight into the pipeline and get their first WhatsApp message within seconds."
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "name": "Beatriz Nogueira",
+      "initials": "BN",
+      "color": "#fb923c",
+      "time": "Yesterday",
+      "preview": "Template: resume_conversation",
+      "unread": 0,
+      "tag": {
+        "label": "Follow-up sent",
+        "tone": "warning"
+      },
+      "deal": {
+        "stage": "Qualification",
+        "value": "R$ 3,600",
+        "owner": "Aura"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Deal entered Qualification"
+        },
+        {
+          "from": "agent",
+          "time": "10:14",
+          "text": "Hi, Beatriz! Great to have you here. Can I show you how Clint organizes your team's conversations?"
+        },
+        {
+          "from": "event",
+          "text": "No reply in 1 hour · waiting 1 day"
+        },
+        {
+          "from": "template",
+          "time": "10:15",
+          "day": "Yesterday",
+          "text": "Hi, Beatriz! Looks like you had a question about the quote. Can I help you move forward? 😊"
+        },
+        {
+          "from": "event",
+          "text": "Waiting for reply · email in 24h if no answer"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "name": "Thiago Moreira",
+      "initials": "TM",
+      "color": "#60a5fa",
+      "time": "Yesterday",
+      "preview": "Deal! We'll start on Monday.",
+      "unread": 0,
+      "tag": {
+        "label": "Sale closed",
+        "tone": "success"
+      },
+      "deal": {
+        "stage": "Won",
+        "value": "R$ 7,200",
+        "owner": "Camila"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Deal entered Qualification"
+        },
+        {
+          "from": "agent",
+          "time": "08:40",
+          "text": "Hi, Thiago! I'm Clint's assistant. I saw you're interested in the annual plan — any questions I can help with?"
+        },
+        {
+          "from": "lead",
+          "time": "08:52",
+          "text": "I want to understand how the AI agent works."
+        },
+        {
+          "from": "event",
+          "text": "Deal moved to Negotiating · Camila notified"
+        },
+        {
+          "from": "lead",
+          "time": "16:20",
+          "text": "Deal! We'll start on Monday."
+        },
+        {
+          "from": "event",
+          "text": "Goal reached: Sale closed"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "name": "Juliana Prado",
+      "initials": "JP",
+      "color": "#f2667b",
+      "time": "Mon",
+      "preview": "Email sent: Any questions?",
+      "unread": 0,
+      "tag": {
+        "label": "Email sent",
+        "tone": "muted"
+      },
+      "deal": {
+        "stage": "Qualification",
+        "value": "R$ 1,900",
+        "owner": "Aura"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Deal entered Qualification"
+        },
+        {
+          "from": "agent",
+          "time": "11:00",
+          "text": "Hi, Juliana! This is Clint's assistant. How can I help you today?"
+        },
+        {
+          "from": "event",
+          "text": "No reply in 1 hour · waiting 1 day"
+        },
+        {
+          "from": "template",
+          "time": "11:02",
+          "day": "Sat",
+          "text": "Hi, Juliana! Looks like you had a question about the quote. Can I help you move forward? 😊"
+        },
+        {
+          "from": "event",
+          "text": "No reply in 24 hours · email “Any questions, Juliana?” sent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+/* Clint · LP versão B — tema dark. Ativo com <html data-theme="dark">; aqui só a paleta muda. */
+:root[data-theme="dark"] {
+  --paper: #08060d;
+  --white: #120e19;
+  --ink: #f6f0fc;
+  --ink-2: #ddd5ea;
+  --muted: #ad9fbc;
+  --soft: #8a7d99;
+  --line: rgba(255, 255, 255, .09);
+  --purple: #8f82ff;
+  --violet: #7c3aed;
+  --purple-tint: rgba(117, 102, 255, .18);
+  color-scheme: dark;
+}
+
+[data-theme="dark"] body { background: var(--paper); }
+[data-theme="dark"] mark { color: #a99fff; }
+
+/* Header */
+[data-theme="dark"] .top { background: rgba(8, 6, 13, .82); }
+[data-theme="dark"] .trial { box-shadow: 0 14px 34px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .1); }
+[data-theme="dark"] .lang-btn:hover { background: rgba(255, 255, 255, .06); }
+[data-theme="dark"] .lang-menu { background: rgba(14, 10, 20, .98); box-shadow: 0 24px 60px rgba(0, 0, 0, .55); }
+[data-theme="dark"] .lang-menu a:hover, [data-theme="dark"] .lang-menu a:focus-visible { background: rgba(255, 255, 255, .06); }
+[data-theme="dark"] .lang-menu a[aria-current] { color: #c9c3ff; }
+
+/* Componentes base */
+[data-theme="dark"] .pill { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05); }
+[data-theme="dark"] .btn-ghost { background: rgba(255, 255, 255, .04); }
+[data-theme="dark"] .btn-ghost:hover { border-color: rgba(255, 255, 255, .22); }
+[data-theme="dark"] .btn-white { color: #14121a; }
+[data-theme="dark"] .watch-dot { background: var(--violet); }
+
+/* Hero: feixe de luz roxo como no useclint.com */
+[data-theme="dark"] .hero::before { right: -20%; top: -40%; width: 90%; height: 160%; background: radial-gradient(closest-side, rgba(117, 102, 255, .35), rgba(88, 40, 190, .12) 55%, transparent 75%); }
+[data-theme="dark"] .hero h1 mark { background: linear-gradient(100deg, #c4b5fd 5%, #8f82ff 55%, #7c3aed); -webkit-background-clip: text; background-clip: text; }
+[data-theme="dark"] .phone { box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .16), 0 0 0 1px rgba(255, 255, 255, .06), 0 50px 100px -30px rgba(117, 102, 255, .55), 0 18px 30px -12px rgba(0, 0, 0, .6); }
+[data-theme="dark"] .notif { background: rgba(28, 24, 38, .92); box-shadow: 0 18px 40px -14px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .08); }
+[data-theme="dark"] .notif-app { background: rgba(37, 211, 102, .14); }
+[data-theme="dark"] .qualify { box-shadow: 0 24px 50px -20px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); }
+[data-theme="dark"] .float-label { color: #c9c3ff; }
+[data-theme="dark"] .deal-col { box-shadow: 0 0 0 3px rgba(255, 255, 255, .06), 0 6px 16px -8px rgba(0, 0, 0, .6); }
+[data-theme="dark"] .deal-col em { color: #c9c3ff; }
+
+/* Faixa do vídeo */
+[data-theme="dark"] .video-band { background: #0d0a14; }
+[data-theme="dark"] .player { background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02)); box-shadow: 0 40px 100px -40px rgba(117, 102, 255, .45); }
+[data-theme="dark"] .player-btn, [data-theme="dark"] .case-thumb { background: #1c1826; }
+
+/* Telas do produto sobre fundo escuro: borda clara sutil e brilho roxo por trás */
+[data-theme="dark"] .app { border-color: rgba(255, 255, 255, .12); box-shadow: 0 0 0 1px rgba(255, 255, 255, .03), 0 50px 100px -40px rgba(117, 102, 255, .5); }
+[data-theme="dark"] .radar-steps li.is-active { box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .05); }
+[data-theme="dark"] .callout { box-shadow: 0 16px 40px -20px rgba(0, 0, 0, .6); }
+[data-theme="dark"] .callout-bad { background: rgba(242, 102, 123, .1); border-color: rgba(242, 102, 123, .3); color: #ffb3c0; }
+[data-theme="dark"] .callout-ok { background: rgba(61, 214, 140, .08); border-color: rgba(61, 214, 140, .28); color: #8ff0c0; }
+[data-theme="dark"] .temp-bar { background: rgba(255, 255, 255, .06); }
+
+/* "Do primeiro oi": vira uma faixa um pouco mais clara para manter o ritmo */
+[data-theme="dark"] .flow { background: #0f0c16; border-block: 1px solid var(--line); }
+[data-theme="dark"] .product { border-color: rgba(255, 255, 255, .12); }
+
+/* Agentes, cases, FAQ */
+[data-theme="dark"] .cases-sec { background: #0d0a14; }
+[data-theme="dark"] .case { background: radial-gradient(90% 58% at 50% -6%, rgba(140, 70, 255, .22), transparent 70%), var(--white); border-color: rgba(167, 139, 250, .16); }
+[data-theme="dark"] .case:hover { box-shadow: 0 30px 60px -30px rgba(117, 102, 255, .45); }
+[data-theme="dark"] .case-value { background: linear-gradient(100deg, #fff 8%, #c4a4ff 56%, #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+[data-theme="dark"] .case-seg { color: #c4b0ff; }
+[data-theme="dark"] .cases-btn:hover, [data-theme="dark"] .case-foot a:hover { background: rgba(255, 255, 255, .06); }
+[data-theme="dark"] .note a, [data-theme="dark"] .faq details a { color: #c4b0ff; }
+
+/* CTA final: no dark, a borda em degradê é o que separa o bloco do fundo */
+[data-theme="dark"] .final-in { box-shadow: 0 40px 120px -40px rgba(117, 102, 255, .6); }
+
+/* Rodapé e seletor de versões */
+[data-theme="dark"] #motion { background: rgba(255, 255, 255, .04); }
+[data-theme="dark"] .version-tag { background: #f6f0fc; color: #14121a; box-shadow: 0 10px 30px rgba(0, 0, 0, .5); }
+[data-theme="dark"] .version-tag span { color: #6b6578; }
+[data-theme="dark"] .version-tag a, [data-theme="dark"] .version-tag button { color: #3b3646; }
+[data-theme="dark"] .version-tag a:hover, [data-theme="dark"] .version-tag button:hover { background: rgba(20, 18, 26, .08); }
+[data-theme="dark"] .version-tag [aria-pressed="true"] { background: #14121a; color: #fff; }

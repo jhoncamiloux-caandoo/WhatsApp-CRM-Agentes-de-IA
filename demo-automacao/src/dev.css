@@ -1,0 +1,7 @@
+/* Só no dev: na LP a Poppins e o fundo já vêm do styles.css dela. */
+@font-face { font-family: 'Poppins'; font-weight: 400; font-display: swap; src: url('../../dist/assets/poppins-400.ttf') format('truetype'); }
+@font-face { font-family: 'Poppins'; font-weight: 500; font-display: swap; src: url('../../dist/assets/poppins-500.ttf') format('truetype'); }
+@font-face { font-family: 'Poppins'; font-weight: 600; font-display: swap; src: url('../../dist/assets/poppins-600.ttf') format('truetype'); }
+@font-face { font-family: 'Poppins'; font-weight: 700; font-display: swap; src: url('../../dist/assets/poppins-700.ttf') format('truetype'); }
+
+body { margin: 0; background: #08060d; }

@@ -1,0 +1,303 @@
+{
+  "INSIGHTS_SUMMARY": {
+    "trigger": "Negócio mudou de etapa",
+    "period": "Últimos 30 dias",
+    "general": [
+      {
+        "label": "Execuções",
+        "value": "1.248",
+        "icon": "play"
+      },
+      {
+        "label": "Concluídas",
+        "value": "214",
+        "icon": "target"
+      },
+      {
+        "label": "Em andamento",
+        "value": "391",
+        "icon": "clock"
+      },
+      {
+        "label": "Saíram do fluxo",
+        "value": "643",
+        "icon": "prev"
+      }
+    ],
+    "highlight": {
+      "label": "Responderam ao follow-up",
+      "value": "38%",
+      "detail": "+21 p.p. vs. sem automação"
+    }
+  },
+  "NODE_STATS": {
+    "n1": {
+      "total": 1248
+    },
+    "n2": {
+      "total": 1190
+    },
+    "n3": {
+      "total": 1190,
+      "branches": {
+        "yes": 488,
+        "no": 702
+      }
+    },
+    "n4": {
+      "total": 702,
+      "waiting": 63
+    },
+    "n5": {
+      "total": 639
+    },
+    "n6": {
+      "total": 639,
+      "branches": {
+        "yes": 186,
+        "no": 453
+      }
+    },
+    "n7": {
+      "total": 453
+    },
+    "n8": {
+      "total": 674
+    },
+    "n9": {
+      "total": 214
+    }
+  },
+  "CONVERSATIONS": [
+    {
+      "id": "c1",
+      "name": "Marina Albuquerque",
+      "initials": "MA",
+      "color": "#7566ff",
+      "time": "14:32",
+      "preview": "Perfeito, pode me mandar a proposta?",
+      "unread": 2,
+      "tag": {
+        "label": "Em negociação",
+        "tone": "success"
+      },
+      "deal": {
+        "stage": "Em negociação",
+        "value": "R$ 4.800",
+        "owner": "Lucas"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Negócio entrou em Qualificação"
+        },
+        {
+          "from": "agent",
+          "time": "09:02",
+          "text": "Oi, Marina! Aqui é a assistente da Clint 😊 Vi que você pediu informações sobre o plano para a sua equipe. Quantas pessoas atendem no WhatsApp hoje?"
+        },
+        {
+          "from": "event",
+          "text": "Sem resposta em 1 hora · aguardando 1 dia"
+        },
+        {
+          "from": "template",
+          "time": "09:00",
+          "day": "Ontem",
+          "text": "Oi, Marina! Vi que ficou alguma dúvida sobre a proposta. Posso te ajudar a seguir? 😊"
+        },
+        {
+          "from": "lead",
+          "time": "14:30",
+          "text": "Oi! Desculpa a demora, semana corrida. Somos 6 vendedores."
+        },
+        {
+          "from": "lead",
+          "time": "14:32",
+          "text": "Perfeito, pode me mandar a proposta?"
+        },
+        {
+          "from": "event",
+          "text": "Negócio movido para Em negociação · Lucas notificado"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "name": "Rafael Quintana",
+      "initials": "RQ",
+      "color": "#3dd68c",
+      "time": "13:10",
+      "preview": "Vocês integram com o meu site?",
+      "unread": 0,
+      "tag": {
+        "label": "Atendido pela IA",
+        "tone": "primary"
+      },
+      "deal": {
+        "stage": "Qualificação",
+        "value": "R$ 2.400",
+        "owner": "Aura"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Negócio entrou em Qualificação"
+        },
+        {
+          "from": "agent",
+          "time": "13:05",
+          "text": "Oi, Rafael! Tudo bem? Sou a assistente da Clint. Me conta: qual o principal desafio do seu time comercial hoje?"
+        },
+        {
+          "from": "lead",
+          "time": "13:09",
+          "text": "A gente perde muito lead que chega pelo site."
+        },
+        {
+          "from": "lead",
+          "time": "13:10",
+          "text": "Vocês integram com o meu site?"
+        },
+        {
+          "from": "agent",
+          "time": "13:10",
+          "text": "Integramos sim! Os leads do site entram direto no funil e já recebem a primeira mensagem no WhatsApp em segundos."
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "name": "Beatriz Nogueira",
+      "initials": "BN",
+      "color": "#fb923c",
+      "time": "Ontem",
+      "preview": "Modelo: retomar_conversa",
+      "unread": 0,
+      "tag": {
+        "label": "Follow-up enviado",
+        "tone": "warning"
+      },
+      "deal": {
+        "stage": "Qualificação",
+        "value": "R$ 3.600",
+        "owner": "Aura"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Negócio entrou em Qualificação"
+        },
+        {
+          "from": "agent",
+          "time": "10:14",
+          "text": "Oi, Beatriz! Que bom ter você por aqui. Posso te mostrar como a Clint organiza o atendimento do seu time?"
+        },
+        {
+          "from": "event",
+          "text": "Sem resposta em 1 hora · aguardando 1 dia"
+        },
+        {
+          "from": "template",
+          "time": "10:15",
+          "day": "Ontem",
+          "text": "Oi, Beatriz! Vi que ficou alguma dúvida sobre a proposta. Posso te ajudar a seguir? 😊"
+        },
+        {
+          "from": "event",
+          "text": "Aguardando resposta · e-mail em 24h se não houver retorno"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "name": "Thiago Moreira",
+      "initials": "TM",
+      "color": "#60a5fa",
+      "time": "Ontem",
+      "preview": "Fechado! Vamos começar segunda.",
+      "unread": 0,
+      "tag": {
+        "label": "Venda fechada",
+        "tone": "success"
+      },
+      "deal": {
+        "stage": "Ganho",
+        "value": "R$ 7.200",
+        "owner": "Camila"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Negócio entrou em Qualificação"
+        },
+        {
+          "from": "agent",
+          "time": "08:40",
+          "text": "Oi, Thiago! Sou a assistente da Clint. Vi seu interesse no plano anual, posso te ajudar com alguma dúvida?"
+        },
+        {
+          "from": "lead",
+          "time": "08:52",
+          "text": "Quero entender como funciona o agente de IA."
+        },
+        {
+          "from": "event",
+          "text": "Negócio movido para Em negociação · Camila notificada"
+        },
+        {
+          "from": "lead",
+          "time": "16:20",
+          "text": "Fechado! Vamos começar segunda."
+        },
+        {
+          "from": "event",
+          "text": "Objetivo atingido: Venda fechada"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "name": "Juliana Prado",
+      "initials": "JP",
+      "color": "#f2667b",
+      "time": "Seg",
+      "preview": "E-mail enviado: Ficou alguma dúvida?",
+      "unread": 0,
+      "tag": {
+        "label": "E-mail enviado",
+        "tone": "muted"
+      },
+      "deal": {
+        "stage": "Qualificação",
+        "value": "R$ 1.900",
+        "owner": "Aura"
+      },
+      "messages": [
+        {
+          "from": "event",
+          "text": "Negócio entrou em Qualificação"
+        },
+        {
+          "from": "agent",
+          "time": "11:00",
+          "text": "Oi, Juliana! Aqui é a assistente da Clint. Como posso te ajudar hoje?"
+        },
+        {
+          "from": "event",
+          "text": "Sem resposta em 1 hora · aguardando 1 dia"
+        },
+        {
+          "from": "template",
+          "time": "11:02",
+          "day": "Sáb",
+          "text": "Oi, Juliana! Vi que ficou alguma dúvida sobre a proposta. Posso te ajudar a seguir? 😊"
+        },
+        {
+          "from": "event",
+          "text": "Sem resposta em 24 horas · e-mail “Ficou alguma dúvida, Juliana?” enviado"
+        }
+      ]
+    }
+  ]
+}
