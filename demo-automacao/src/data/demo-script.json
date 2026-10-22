@@ -1,0 +1,386 @@
+{
+  "automation": {
+    "name": "Follow-up de leads sem resposta",
+    "initialStatus": "Rascunho",
+    "publishedStatus": "Ativa"
+  },
+  "steps": [
+    {
+      "id": "pedido",
+      "title": "Você descreve o que precisa",
+      "subtitle": "Um pedido em linguagem natural, sem configurar nada",
+      "userMessage": "Quando um lead entrar em Qualificação, quero que a IA atenda no WhatsApp. Se ele sumir, faz follow-up. Se responder, leva pra negociação.",
+      "aiMessage": "Entendi! Vou montar uma automação de follow-up para leads em Qualificação: atendimento com IA, lembrete se não houver resposta e avanço no funil quando o lead engajar.",
+      "resultCard": null,
+      "canvasOps": [],
+      "activeTab": "editor",
+      "durationMs": 7000
+    },
+    {
+      "id": "gatilho",
+      "title": "Definindo o gatilho",
+      "subtitle": "A automação começa quando o negócio muda de etapa",
+      "aiMessage": "Primeiro, o gatilho: a automação inicia sempre que um negócio entrar na etapa Qualificação do funil Comercial.",
+      "resultCard": {
+        "nodeType": "trigger",
+        "title": "Iniciar quando…",
+        "detail": "Negócio entrou na etapa Qualificação"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n1",
+          "type": "trigger",
+          "position": {
+            "x": 0,
+            "y": 140
+          },
+          "data": {
+            "title": "Iniciar quando…",
+            "label": "Negócio entrou na etapa",
+            "value": "Qualificação",
+            "meta": "Funil Comercial"
+          }
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6000
+    },
+    {
+      "id": "agente",
+      "title": "Colocando a IA para atender",
+      "subtitle": "O agente responde no WhatsApp com o contexto do negócio",
+      "aiMessage": "Agora conecto um agente de IA ao WhatsApp Oficial. Ele cumprimenta o lead, entende a necessidade e registra tudo no CRM.",
+      "resultCard": {
+        "nodeType": "agent",
+        "title": "Iniciar atendimento",
+        "detail": "Agente Qualificador · WhatsApp Oficial"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n2",
+          "type": "agent",
+          "position": {
+            "x": 420,
+            "y": 100
+          },
+          "data": {
+            "title": "Iniciar atendimento",
+            "device": "WhatsApp Oficial · Comercial",
+            "agent": "Qualificador",
+            "prompt": "Você é o assistente comercial. Entenda a necessidade do lead e registre no CRM."
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e1",
+          "source": "n1",
+          "target": "n2"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6500
+    },
+    {
+      "id": "condicao",
+      "title": "Checando se o lead respondeu",
+      "subtitle": "Um desvio separa quem engajou de quem sumiu",
+      "aiMessage": "Adicionei uma condição: se o lead responder em até 1 hora, segue para negociação. Se não responder, entra no fluxo de follow-up.",
+      "resultCard": {
+        "nodeType": "condition",
+        "title": "Interação de conversa",
+        "detail": "Respondeu · Não respondeu em 1h"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n3",
+          "type": "condition",
+          "position": {
+            "x": 840,
+            "y": 100
+          },
+          "data": {
+            "title": "Interação de conversa",
+            "branches": [
+              {
+                "id": "yes",
+                "label": "Se o lead responder"
+              },
+              {
+                "id": "no",
+                "label": "Se não responder em 1 hora",
+                "tone": "danger"
+              }
+            ]
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e2",
+          "source": "n2",
+          "target": "n3"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6500
+    },
+    {
+      "id": "followup",
+      "title": "Criando o follow-up",
+      "subtitle": "Espera um dia e envia uma mensagem aprovada pela Meta",
+      "aiMessage": "Para quem não respondeu: espero 1 dia e envio um modelo de mensagem pelo WhatsApp Oficial, retomando a conversa de onde parou.",
+      "resultCard": {
+        "nodeType": "whatsapp",
+        "title": "Aguardar 1 dia + WhatsApp",
+        "detail": "Modelo “retomar_conversa” · Oficial"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n4",
+          "type": "wait",
+          "position": {
+            "x": 1260,
+            "y": 360
+          },
+          "data": {
+            "title": "Aguardar",
+            "value": "1 dia",
+            "meta": "Somente em horário comercial"
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e3",
+          "source": "n3",
+          "sourceHandle": "no",
+          "target": "n4",
+          "tone": "danger"
+        },
+        {
+          "op": "addNode",
+          "id": "n5",
+          "type": "whatsapp",
+          "position": {
+            "x": 1680,
+            "y": 320
+          },
+          "data": {
+            "title": "Enviar mensagem",
+            "channel": "WhatsApp Oficial",
+            "sender": "Clint · Comercial",
+            "preview": "Oi, {{nome}}! Vi que ficou alguma dúvida sobre a proposta. Posso te ajudar a seguir? 😊"
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e4",
+          "source": "n4",
+          "target": "n5"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 7000
+    },
+    {
+      "id": "ultima-chance",
+      "title": "Última tentativa por outro canal",
+      "subtitle": "Se continuar em silêncio, a Aura tenta por e-mail",
+      "aiMessage": "Se mesmo assim não houver resposta em 24 horas, envio um e-mail com o resumo da conversa. Nenhum lead fica esquecido.",
+      "resultCard": {
+        "nodeType": "email",
+        "title": "Enviar e-mail",
+        "detail": "Após 24h sem resposta"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n6",
+          "type": "condition",
+          "position": {
+            "x": 2100,
+            "y": 320
+          },
+          "data": {
+            "title": "Interação de conversa",
+            "branches": [
+              {
+                "id": "yes",
+                "label": "Se o lead responder"
+              },
+              {
+                "id": "no",
+                "label": "Se não responder em 24 horas",
+                "tone": "danger"
+              }
+            ]
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e5",
+          "source": "n5",
+          "target": "n6"
+        },
+        {
+          "op": "addNode",
+          "id": "n7",
+          "type": "email",
+          "position": {
+            "x": 2520,
+            "y": 480
+          },
+          "data": {
+            "title": "Enviar e-mail",
+            "subject": "Ficou alguma dúvida, {{nome}}?",
+            "meta": "Resumo da conversa anexado"
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e6",
+          "source": "n6",
+          "sourceHandle": "no",
+          "target": "n7",
+          "tone": "danger"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6500
+    },
+    {
+      "id": "negociacao",
+      "title": "Levando para negociação",
+      "subtitle": "Quem respondeu avança sozinho no funil",
+      "aiMessage": "Quando o lead responde, movo o negócio para Em negociação e aviso o vendedor responsável. O objetivo da automação é fechar a venda.",
+      "resultCard": {
+        "nodeType": "action",
+        "title": "Mover para etapa",
+        "detail": "Em negociação · Objetivo: Venda fechada"
+      },
+      "canvasOps": [
+        {
+          "op": "addNode",
+          "id": "n8",
+          "type": "action",
+          "position": {
+            "x": 2520,
+            "y": -160
+          },
+          "data": {
+            "title": "Ações",
+            "items": [
+              {
+                "label": "Mover para etapa",
+                "value": "Em negociação"
+              },
+              {
+                "label": "Notificar responsável",
+                "value": "Vendedor do negócio"
+              }
+            ]
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e7",
+          "source": "n3",
+          "sourceHandle": "yes",
+          "target": "n8"
+        },
+        {
+          "op": "addEdge",
+          "id": "e8",
+          "source": "n6",
+          "sourceHandle": "yes",
+          "target": "n8"
+        },
+        {
+          "op": "addNode",
+          "id": "n9",
+          "type": "goal",
+          "position": {
+            "x": 2940,
+            "y": -130
+          },
+          "data": {
+            "title": "Objetivo",
+            "value": "Venda fechada",
+            "meta": "Encerra a automação ao ser atingido"
+          }
+        },
+        {
+          "op": "addEdge",
+          "id": "e9",
+          "source": "n8",
+          "target": "n9"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 7000
+    },
+    {
+      "id": "publicar",
+      "title": "Revisando e publicando",
+      "subtitle": "A Aura valida cada bloco antes de ativar",
+      "aiMessage": "Revisei os 9 blocos: canais conectados, modelo aprovado e nenhum caminho sem saída. Publiquei a automação, ela já está ativa.",
+      "resultCard": {
+        "nodeType": "goal",
+        "title": "Automação publicada",
+        "detail": "9 blocos · status Ativa"
+      },
+      "canvasOps": [
+        {
+          "op": "highlight",
+          "ids": [
+            "n1",
+            "n2",
+            "n3",
+            "n4",
+            "n5",
+            "n6",
+            "n7",
+            "n8",
+            "n9"
+          ]
+        },
+        {
+          "op": "setStatus",
+          "status": "Ativa"
+        }
+      ],
+      "activeTab": "editor",
+      "durationMs": 6500
+    },
+    {
+      "id": "insights",
+      "title": "Acompanhando os resultados",
+      "subtitle": "Cada bloco mostra quantos leads passaram por ele",
+      "aiMessage": "Pronto. Em Insights você vê quantos leads passaram por cada bloco: quantos responderam ao follow-up, quantos foram para negociação e quantos fecharam.",
+      "resultCard": {
+        "nodeType": "insights",
+        "title": "Insights da automação",
+        "detail": "Dados de exemplo"
+      },
+      "canvasOps": [],
+      "activeTab": "insights",
+      "durationMs": 8000
+    },
+    {
+      "id": "conversas",
+      "title": "Conversas com contexto",
+      "subtitle": "Cada conversa mostra o que a automação fez com o lead",
+      "aiMessage": "E em Conversas o seu time vê cada atendimento: o que a IA falou, quando o follow-up saiu e quem já está em negociação. Tudo no histórico do negócio.",
+      "resultCard": {
+        "nodeType": "whatsapp",
+        "title": "Conversas da automação",
+        "detail": "5 conversas de exemplo"
+      },
+      "canvasOps": [],
+      "activeTab": "conversas",
+      "durationMs": 8000
+    }
+  ]
+}
